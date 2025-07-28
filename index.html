@@ -9,7 +9,7 @@
 <body>
     <div class="all-container">
         <h1 class="title">Tic Tac Toe</h1>
-        <div class="setup">
+        <div class="setup" id="setup">
             <div class="player">
                 <label for="player1">Player 1:</label>
                 <input type="text" id="player1" placeholder="Enter Player 1 Name" />
@@ -18,11 +18,12 @@
                 <label for="player2">Player 2:</label>
                 <input type="text" id="player2" placeholder="Enter Player 2 Name" />
             </div>
+            <input type="number" id="rounds" min="1" max="10" placeholder="Enter Number of Rounds(odd only)"  />
             <button id="startBtn">Start Game</button>
             <p class="error" id="error"></p>
         </div>
         <div id="board" class="hidden">
-
+            <p>Game starts now</p>
         </div>
         
     </div>
