@@ -1,55 +1,90 @@
-*{
+* {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #eee2e2, #eb7272);
-    color: #8d4242;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #325809 100%);
+    color: #325809;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
+    position: relative; 
 }
+
 .all-container {
-    min-width: 300px;
-    padding: 2rem;
-    background-color: #e8dcdc;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(33, 7, 7, 0.1);
+    min-width: 320px;
+    max-width: 420px;
+    width: 95vw;
+    padding: 2.5rem 1.5rem 2rem 1.5rem;
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(251, 182, 182, 0.18);
     text-align: center;
+    margin: 2vh auto;
 }
-input , button {
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #325809;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px hwb(174 7% 30% / 0.627);
+}
+
+input,
+button {
     display: block;
     width: 100%;
-    padding: 0.8rem;
+    padding: 0.9rem 1rem;
     margin: 1rem 0;
     border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    border: none;
+    border-radius: 12px;
+    font-size: 1.08rem;
+    font-family: inherit;
+    outline: none;
+    box-shadow: 0 2px 8px #fbb6b640;
+    transition: box-shadow 0.2s, background 0.2s, color 0.2s;
 }
+
 input {
-    background-color: #f2f2f2;
-    color: #333;
+    background-color: #f7f7fa;
+    color: #325809;
+    border: 1.5px solid #325809;
 }
+
+input:focus {
+    border-color: #325809;
+    background: #fff;
+}
+
 button {
-    background-color: #eb7272;
+    background-color: #325809;
     color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px #e0484820;
 }
-button:hover {
-    background-color: #e95959;
+
+button:hover, .model-buttons button:hover {
+    background-color: #487419;
+    color: #fff;
+    box-shadow: 0 4px 16px #e0484840;
 }
+
 .error {
-    color: #ff0000;
-    font-size: 0.9rem;
+    color: #e04848;
+    font-size: 0.98rem;
     margin-top: -10px;
     margin-bottom: 10px;
+    font-weight: 500;
 }
+
 .hidden {
     display: none;
 }
@@ -57,31 +92,168 @@ button:hover {
 .scoreboard {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-  }
-  
-  .gameboard {
+    align-items: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.15rem;
+    background: #f7f7fa;
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    box-shadow: 0 2px 8px #fbb6b620;
+    color: #325809;
+    font-weight: 600;
+}
+
+.gameboard {
     display: grid;
-    grid-template-columns: repeat(3, 110px);
-    gap: 5px;
+    grid-template-columns: repeat(3, minmax(80px, 1fr));
+    gap: 10px;
     justify-content: center;
     margin: auto;
-  }
-  .cell {
-    width: 100px;
-    height: 100px;
-    background: #fff;
-    color: #333;
-    font-size: 2rem;
-    font-weight: bold;
+    max-width: 320px;
+}
+
+.cell {
+    width: 90px;
+    height: 90px;
+    background-color: #dbe8cd;
+    color: #325809;
+    font-size: 2.5rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px #e0484820;
+    border: 2px solid #325809;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    user-select: none;
+}
+
+.cell:hover {
+    background: linear-gradient(135deg, hsl(116, 27%, 69%) 0%, #fff 100%);
+    color: #325809;
+    box-shadow: 0 4px 16px #e0484840;
+}
+.model {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
   }
   
-    .cell:hover {
-        background: #f0f0f0;
+  .model-content {
+    background: linear-gradient(135deg, #fff 30%, #325809 100%);
+    padding: 2rem 2.5rem;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px #375517;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    animation: popIn 0.3s ease;
+  }
+  
+  .model-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #325809;
+    font-weight: 700;
+  }
+  
+  .model-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: #325809;
+  }
+  
+  .model-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .model-buttons button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #325809;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px #e0484820;
+  }
+  
+  .model-buttons button:hover {
+    background-color: #487419;
+    box-shadow: 0 4px 16px #18502240;
+  }
+  
+  @keyframes popIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
     }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Toast Notification */
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #487419 0%, #69903f 100%);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 1.08rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 9999;
+    font-weight: 600;
+    box-shadow: 0 2px 8px #e0484820;
+  }
+  
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  
+@media (max-width: 600px) {
+    .all-container {
+        min-width: unset;
+        max-width: 98vw;
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    }
+    .title {
+        font-size: 2rem;
+    }
+    .gameboard {
+        grid-template-columns: repeat(3, minmax(60px, 1fr));
+        max-width: 200px;
+    }
+    .cell {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+    .scoreboard {
+        font-size: 1rem;
+        padding: 0.5rem 0.5rem;
+    }
+}
+  
